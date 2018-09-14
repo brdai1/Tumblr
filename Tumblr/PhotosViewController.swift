@@ -41,7 +41,6 @@ class PhotosViewController: UIViewController, UITableViewDataSource {
         task.resume()
     }
     
-    
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return posts.count
         }
@@ -67,8 +66,18 @@ class PhotosViewController: UIViewController, UITableViewDataSource {
             
             return cell
         }
-        
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let photodetailViewController = segue.destination as! PhotoDetailsViewController
+        let cell = sender as! PhotoCell
+        if let indexPath = TableView.indexPath(for: cell) {
+            photodetailViewController.image = cell.picture.image!
+            
+        }
+   
+        
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
